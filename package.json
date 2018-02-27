@@ -1,0 +1,15 @@
+{
+  "name": "hamaca-mailer",
+  "version": "0.1.0",
+  "description": "",
+  "main": "mailer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Salvatore Zappalà",
+  "license": "ISC",
+  "dependencies": {
+    "ansi-to-html": "^0.6.3",
+    "nodemailer": "^4.4.1"
+  }
+}
