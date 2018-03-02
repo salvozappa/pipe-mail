@@ -1,15 +1,14 @@
 {
-  "name": "hamaca-mailer",
+  "name": "mailer-cli",
   "version": "0.1.0",
-  "description": "",
+  "description": "A command-line tool to send e-mails via SMTP",
   "main": "mailer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Salvatore Zappalà",
-  "license": "ISC",
+  "author": "Salvatore Zappalà (https://salvatorezappala.info)",
+  "license": "MIT",
   "dependencies": {
-    "ansi-to-html": "^0.6.3",
     "nodemailer": "^4.4.1"
   }
 }
