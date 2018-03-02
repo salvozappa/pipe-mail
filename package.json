@@ -2,12 +2,15 @@
   "name": "mailer-cli",
   "version": "0.1.0",
   "description": "A command-line tool to send e-mails via SMTP",
-  "main": "mailer.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Salvatore Zappalà (https://salvatorezappala.info)",
   "license": "MIT",
+  "bin": {
+    "mailer-cli": "./index.js"
+  },
   "dependencies": {
     "nodemailer": "^4.4.1"
   }
