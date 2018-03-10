@@ -5,7 +5,7 @@
 const nodemailer = require('nodemailer');
 
 // create reusable transporter object using the default SMTP transport
-let transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
     host: 'smtp.fastmail.com',
     port: 465,
     secure: true, // true for 465, false for other ports
@@ -16,7 +16,7 @@ let transporter = nodemailer.createTransport({
 });
 
 // fetch message from standard input
-let message = '';
+const message = '';
 process.stdin.setEncoding('utf8');
 process.stdin.on('readable', () => {
   const chunk = process.stdin.read();
@@ -27,7 +27,7 @@ process.stdin.on('readable', () => {
 
 // send message when standard input is over
 process.stdin.on('end', () => {
-    let mailOptions = {
+    const mailOptions = {
         from: '"Hamaca Test Report" <no-reply@hamaca.io>',
         to: 'salvo.a.zappala@gmail.com',
         subject: 'Test report',
