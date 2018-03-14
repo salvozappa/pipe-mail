@@ -3,11 +3,17 @@ const td = require('testdouble');
 const readStandardInput = require('../lib/readStandardInput');
 const EventEmitter = require('events');
 
+class StandardInputMock extends EventEmitter {
+    constructor() {
+        super();
+        this.setEncoding = td.function('fake set encoding function');
+        this.read = () => { return 'foo' };
+    }
+}
+
 describe('readStandardInput', () => {
 
-    const stdinMock = new EventEmitter();
-    stdinMock.setEncoding = td.function('set encoding');
-    stdinMock.read = () => { return 'foo' };
+    const stdinMock = new StandardInputMock();
 
     it('Should set the encoding to utf8', () => {
         readStandardInput(stdinMock);
