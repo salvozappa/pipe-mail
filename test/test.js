@@ -20,7 +20,7 @@ describe('readStandardInput', () => {
         td.verify(stdinMock.setEncoding('utf8'));
     });
 
-    it('Should read the standard input', function () {
+    it('Should read the standard input', () => {
         setTimeout(() => {
             stdinMock.emit('readable');
             stdinMock.emit('end');
@@ -30,7 +30,7 @@ describe('readStandardInput', () => {
         });
     });
 
-    it('Should concatenate multiple chunks', function () {
+    it('Should concatenate multiple chunks', () => {
         setTimeout(() => {
             stdinMock.emit('readable');
             stdinMock.emit('readable');
