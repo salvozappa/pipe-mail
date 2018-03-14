@@ -7,19 +7,30 @@ const nodemailer = require('nodemailer');
 const readStandardInput = require('./lib/readStandardInput');
 const sendMessage = require('./lib/sendMessage');
 
-const mailOptions = {
+const options = {
     from: '"Hamaca Test Report" <no-reply@hamaca.io>',
     to: 'salvo.a.zappala@gmail.com',
     subject: 'Test report',
-};
-
-const transporter = nodemailer.createTransport({
     host: 'smtp.fastmail.com',
     port: 465,
     secure: true,
+    user: 'salvatorezappala@fastmail.com',
+    pass: 'umwbtgv5qjrzlhqn'
+};
+
+const mailOptions = {
+    from: options.from,
+    to: options.to,
+    subject: options.subject,
+};
+
+const transporter = nodemailer.createTransport({
+    host: options.host,
+    port: options.port,
+    secure: options.secure,
     auth: {
-        user: 'salvatorezappala@fastmail.com',
-        pass: 'umwbtgv5qjrzlhqn'
+        user: options.user,
+        pass: options.pass
     }
 });
 
