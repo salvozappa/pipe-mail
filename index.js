@@ -20,17 +20,14 @@ commander
     .option('-i, --insecure', 'Disable TSL connection')
     .parse(process.argv);
 
-console.log(commander.insecure);
-process.exit();
-
 const options = {
     from: commander.from,
     to: commander.to,
     subject: commander.subject,
-    host: commander.host, // smtp.fastmail.com
-    secure: true,
-    user: commander.user,  //'salvatorezappala@fastmail.com',
-    pass: commander.pass //'umwbtgv5qjrzlhqn'
+    host: commander.host || process.env.SMTP_HOST, // smtp.fastmail.com
+    secure: commander.insecure || process.env.SMTP_NOTLS,
+    user: commander.user || SMTP_USER,  //'salvatorezappala@fastmail.com',
+    pass: commander.pass || SMTP_PASSWORD //'umwbtgv5qjrzlhqn'
 };
 
 const transporter = createTransporter(options, nodemailer);
