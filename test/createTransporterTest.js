@@ -10,7 +10,6 @@ describe('createTransporter', () => {
     it('Should properly set the options', () => {
         createTransporter({
             host: 'host',
-            secure: true,
             user: 'user',
             password: 'password',
         }, nodeMailerMock);
@@ -27,7 +26,6 @@ describe('createTransporter', () => {
     it('Should not pass an invalid option to nodemailer', () => {
         createTransporter({
             host: 'host',
-            secure: true,
             user: 'user',
             password: 'password',
             foo: 'bar' // this invalid option should be scrapped

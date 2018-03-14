@@ -17,17 +17,15 @@ commander
     .option('-h, --host <host>', 'SMTP server host', 'marble')
     .option('-u, --user <user>', 'SMTP login username')
     .option('-p, --password <password>', 'SMTP login password')
-    .option('-i, --insecure', 'Disable TSL connection')
     .parse(process.argv);
 
 const options = {
     from: commander.from,
     to: commander.to,
     subject: commander.subject,
-    host: commander.host || process.env.SMTP_HOST, // smtp.fastmail.com
-    secure: commander.insecure || process.env.SMTP_NOTLS,
-    user: commander.user || SMTP_USER,  //'salvatorezappala@fastmail.com',
-    pass: commander.pass || SMTP_PASSWORD //'umwbtgv5qjrzlhqn'
+    host: commander.host        || process.env.SMTP_HOST, // smtp.fastmail.com
+    user: commander.user        || SMTP_USER,  //'salvatorezappala@fastmail.com',
+    pass: commander.pass        || SMTP_PASSWORD //'umwbtgv5qjrzlhqn'
 };
 
 const transporter = createTransporter(options, nodemailer);
