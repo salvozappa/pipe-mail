@@ -3,19 +3,33 @@
 'use strict';
 
 const nodemailer = require('nodemailer');
+const commander = require('commander');
 
 const readStandardInput = require('./lib/readStandardInput');
 const sendMessage = require('./lib/sendMessage');
 
+commander
+    .version('0.1.0')
+    .option('-f, --from <from>', 'Sender address')
+    .option('-t, --to <to>', 'Recipient address')
+    .option('-s, --subject <subject>', 'E-mail subject')
+    .option('-h, --host <host>', 'SMTP server host', 'marble')
+    .option('-u, --user <user>', 'SMTP login username')
+    .option('-p, --password <password>', 'SMTP login password')
+    .option('-i, --insecure', 'Disable TSL connection')
+    .parse(process.argv);
+
+console.log(commander.insecure);
+process.exit();
+
 const options = {
-    from: '"Hamaca Test Report" <no-reply@hamaca.io>',
-    to: 'salvo.a.zappala@gmail.com',
-    subject: 'Test report',
-    host: 'smtp.fastmail.com',
-    port: 465,
+    from: commander.from,
+    to: commander.to,
+    subject: commander.subject,
+    host: commander.host, // smtp.fastmail.com
     secure: true,
-    user: 'salvatorezappala@fastmail.com',
-    pass: 'umwbtgv5qjrzlhqn'
+    user: commander.user,  //'salvatorezappala@fastmail.com',
+    pass: commander.pass //'umwbtgv5qjrzlhqn'
 };
 
 const mailOptions = {
