@@ -23,4 +23,18 @@ describe('readStandardInput', () => {
             td.verify(stdinMock.read());
         });
     });
+
+    it('Should concatenate multiple chunks', function () {
+        const stdinMock = new EventEmitter();
+        stdinMock.setEncoding = td.function('set encoding');
+        stdinMock.read = () => {return 'foo'};
+        setTimeout(() => {
+            stdinMock.emit('readable');
+            stdinMock.emit('readable');
+            stdinMock.emit('end');
+        }, 5);
+        return readStandardInput(stdinMock).then((result) => {
+            assert.equal(result, 'foofoo');
+        });
+    });
 });
