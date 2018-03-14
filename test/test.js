@@ -12,7 +12,6 @@ class StandardInputMock extends EventEmitter {
 }
 
 describe('readStandardInput', () => {
-
     const stdinMock = new StandardInputMock();
 
     it('Should set the encoding to utf8', () => {
