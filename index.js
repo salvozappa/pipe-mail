@@ -7,6 +7,7 @@ const commander = require('commander');
 
 const readStandardInput = require('./lib/readStandardInput');
 const sendMessage = require('./lib/sendMessage');
+const createTransporter = require('./lib/createTransporter');
 
 commander
     .version('0.1.0')
@@ -32,23 +33,9 @@ const options = {
     pass: commander.pass //'umwbtgv5qjrzlhqn'
 };
 
-const mailOptions = {
-    from: options.from,
-    to: options.to,
-    subject: options.subject,
-};
-
-const transporter = nodemailer.createTransport({
-    host: options.host,
-    port: options.port,
-    secure: options.secure,
-    auth: {
-        user: options.user,
-        pass: options.pass
-    }
-});
+const transporter = createTransporter(options, nodemailer);
 
 (async () => {
     const input = await readStandardInput(process.stdin);
-    sendMessage(input, mailOptions, transporter);
+    sendMessage(input, options, transporter);
 })();
