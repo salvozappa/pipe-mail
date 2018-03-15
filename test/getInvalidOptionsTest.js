@@ -6,36 +6,49 @@ describe('getInvalidOptions', () => {
 
     let options;
 
-    it('Should return an empty array if all options are valid', () => {
+    it('Should accept valid e-mails', () => {
         options = {
             from: 'foo@bar.com',
             to: 'bar@foo.com',
-            host: 'smtp.foo.com',
-            user: 'user',
-            pass: 'password'
         };
         assert.deepEqual(getInvalidOptions(options), [])
     });
 
-    it('Should return a single invalid options', () => {
-        options = {
-            from: 'invalidemail',
-            to: 'bar@foo.com',
-            host: 'smtp.foo.com',
-            user: 'user',
-            pass: 'password'
-        };
-        assert.deepEqual(getInvalidOptions(options), ['from']);
-    });
-
-    it('Should return all invalid options', () => {
+    it('Should not accept invalid e-mails', () => {
         options = {
             from: 'invalidemail',
             to: 'invalidemail',
+        };
+        assert.deepEqual(getInvalidOptions(options), ['from', 'to'])
+    });
+
+    it('Should accept a valid host', () => {
+        options = {
+            host: 'smtp.foo.com',
+        };
+        assert.deepEqual(getInvalidOptions(options), []);
+    });
+
+    it('Should not accept an invalid host', () => {
+        options = {
             host: 'invalidhost',
+        };
+        assert.deepEqual(getInvalidOptions(options), ['host']);
+    });
+
+    it('Should accept non-empty credentials', () => {
+        options = {
+            user: 'user',
+            pass: 'pass'
+        };
+        assert.deepEqual(getInvalidOptions(options), []);
+    });
+
+    it('Should not accept empty credentials', () => {
+        options = {
             user: '',
             pass: ''
         };
-        assert.deepEqual(getInvalidOptions(options), ['from', 'to', 'host', 'user', 'pass']);
+        assert.deepEqual(getInvalidOptions(options), ['user', 'pass']);
     });
 });
