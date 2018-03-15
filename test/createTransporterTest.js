@@ -10,8 +10,15 @@ describe('createTransporter', () => {
     it('Should pass the host to the transporter', () => {
         createTransporter({host: 'host'}, nodeMailerMock);
         td.verify(nodeMailerMock.createTransport(
-            td.matchers.contains({host: 'host'}
-        )));
+            td.matchers.contains({ host: 'host'})
+        ));
+    });
+
+    it('Should pass the port to the transporter', () => {
+        createTransporter({ port: '10' }, nodeMailerMock);
+        td.verify(nodeMailerMock.createTransport(
+            td.matchers.contains({ port: '10' })
+        ));
     });
 
     it('Should properly format the authentication options', () => {
@@ -37,4 +44,14 @@ describe('createTransporter', () => {
             td.matchers.argThat((options) => { return typeof options.foo === 'undefined' }),
         ));
     });
+
+
+    it('Should not pass the port if it\'s undefined', () => {
+        createTransporter({
+            port: undefined
+        }, nodeMailerMock);
+        td.verify(nodeMailerMock.createTransport(
+            td.matchers.argThat((options) => { return Object.keys(options).indexOf('port') === -1 }),
+        ));
+    })
 });

@@ -17,6 +17,7 @@ commander
     .arguments('<recipient-email-address>')
     .option('-s, --subject <subject>', 'e-mail subject')
     .option('-o, --host <host>', 'SMTP server host')
+    .option('-r, --port <port>', 'SMTP server port. Defaults to 485 if SSL is in use, 587 if not')
     .option('-u, --user <user>', 'SMTP login username')
     .option('-p, --password <password>', 'SMTP login password')
     .parse(process.argv);
@@ -27,7 +28,8 @@ const options = {
     subject: commander.subject,
     host: commander.host        || process.env.SMTP_HOST, // smtp.fastmail.com
     user: commander.user        || process.env.SMTP_USER,  //'salvatorezappala@fastmail.com',
-    pass: commander.pass        || process.env.SMTP_PASSWORD //'umwbtgv5qjrzlhqn'
+    pass: commander.pass        || process.env.SMTP_PASSWORD, //'umwbtgv5qjrzlhqn'
+    port: commander.port        || process.env.SMTP_PORT
 };
 
 if (getMissingOptions(options).length > 0 || getInvalidOptions(options).length > 0) {
