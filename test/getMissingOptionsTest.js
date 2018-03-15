@@ -39,6 +39,12 @@ describe('getMissingOptions', () => {
         assert(!missingOptions.has('port'));
     });
 
+    it('Should not consider "ssl" mandatory', () => {
+        const options = {};
+        const missingOptions = new Set(getMissingOptions(options));
+        assert(!missingOptions.has('ssl'));
+    });
+
     it('Should consider undefined values as missing', () => {
         const options = {
             to: undefined

@@ -30,14 +30,21 @@ describe('createTransporter', () => {
         ));
     })
 
-    it('Should pass "secure" to the transporter if "noSsl" option is set', () => {
-        createTransporter({ noSsl: true }, nodeMailerMock);
+    it('Should pass "secure" to the transporter if "ssl" option is set', () => {
+        createTransporter({ ssl: true }, nodeMailerMock);
+        td.verify(nodeMailerMock.createTransport(
+            td.matchers.contains({ secure: true })
+        ));
+    });
+
+    it('Should disable "secure" in the transporter if "ssl" option is set to false', () => {
+        createTransporter({ ssl: false }, nodeMailerMock);
         td.verify(nodeMailerMock.createTransport(
             td.matchers.contains({ secure: false })
         ));
     });
 
-    it('Should not pass "secure" to the transporter if "noSsl" option is not set', () => {
+    it('Should not pass "secure" to the transporter if "ssl" option is not set', () => {
         createTransporter({}, nodeMailerMock);
         td.verify(nodeMailerMock.createTransport(
             td.matchers.argThat((options) => { return Object.keys(options).indexOf('secure') === -1 }),

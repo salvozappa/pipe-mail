@@ -58,6 +58,27 @@ describe('getInvalidOptions', () => {
         assert.deepEqual(getInvalidOptions(options), ['port']);
     });
 
+    it('Should not consider an undefined optional key', () => {
+        options = {
+            port: undefined
+        };
+        assert.deepEqual(getInvalidOptions(options), []);
+    });
+
+    it('Should accept "ssl" option if boolean', () => {
+        options = {
+            ssl: true
+        };
+        assert.deepEqual(getInvalidOptions(options), []);
+    });
+
+    it('Should not accept "ssl" option if non-boolean', () => {
+        options = {
+            ssl: 'abc'
+        };
+        assert.deepEqual(getInvalidOptions(options), ['ssl']);
+    });
+
     it('Should not accept empty credentials', () => {
         options = {
             user: '',
