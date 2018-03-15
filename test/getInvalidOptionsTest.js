@@ -44,6 +44,20 @@ describe('getInvalidOptions', () => {
         assert.deepEqual(getInvalidOptions(options), []);
     });
 
+    it('Should accept a valid port number', () => {
+        options = {
+            port: '2020'
+        };
+        assert.deepEqual(getInvalidOptions(options), []);
+    });
+
+    it('Should not accept a non-numeric port number', () => {
+        options = {
+            port: 'abc'
+        };
+        assert.deepEqual(getInvalidOptions(options), ['abc']);
+    });
+
     it('Should not accept empty credentials', () => {
         options = {
             user: '',

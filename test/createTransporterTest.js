@@ -21,6 +21,29 @@ describe('createTransporter', () => {
         ));
     });
 
+    it('Should not pass the port to the transporter if it\'s undefined', () => {
+        createTransporter({
+            port: undefined
+        }, nodeMailerMock);
+        td.verify(nodeMailerMock.createTransport(
+            td.matchers.argThat((options) => { return Object.keys(options).indexOf('port') === -1 }),
+        ));
+    })
+
+    it('Should pass "secure" to the transporter if "noSsl" option is set', () => {
+        createTransporter({ noSsl: true }, nodeMailerMock);
+        td.verify(nodeMailerMock.createTransport(
+            td.matchers.contains({ secure: false })
+        ));
+    });
+
+    it('Should not pass "secure" to the transporter if "noSsl" option is not set', () => {
+        createTransporter({}, nodeMailerMock);
+        td.verify(nodeMailerMock.createTransport(
+            td.matchers.argThat((options) => { return Object.keys(options).indexOf('secure') === -1 }),
+        ));
+    });
+
     it('Should properly format the authentication options', () => {
         createTransporter({
             user: 'user',
@@ -44,14 +67,4 @@ describe('createTransporter', () => {
             td.matchers.argThat((options) => { return typeof options.foo === 'undefined' }),
         ));
     });
-
-
-    it('Should not pass the port if it\'s undefined', () => {
-        createTransporter({
-            port: undefined
-        }, nodeMailerMock);
-        td.verify(nodeMailerMock.createTransport(
-            td.matchers.argThat((options) => { return Object.keys(options).indexOf('port') === -1 }),
-        ));
-    })
 });
