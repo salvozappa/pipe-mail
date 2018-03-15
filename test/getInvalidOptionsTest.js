@@ -55,7 +55,7 @@ describe('getInvalidOptions', () => {
         options = {
             port: 'abc'
         };
-        assert.deepEqual(getInvalidOptions(options), ['abc']);
+        assert.deepEqual(getInvalidOptions(options), ['port']);
     });
 
     it('Should not accept empty credentials', () => {
