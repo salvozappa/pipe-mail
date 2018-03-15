@@ -10,7 +10,6 @@ describe('getMissingOptions', () => {
         options = {
             from: 'foo@bar.com',
             to: 'bar@foo.com',
-            subject: 'Subject',
             host: 'smtp.foo.com',
             user: 'user',
             pass: 'password'
@@ -21,7 +20,6 @@ describe('getMissingOptions', () => {
     it('Should return a single mising required options', () => {
         options = {
             to: 'bar@foo.com',
-            subject: 'Subject',
             host: 'smtp.foo.com',
             user: 'user',
             pass: 'password'
@@ -31,7 +29,7 @@ describe('getMissingOptions', () => {
 
     it('Should return all mising required options', () => {
         options = {};
-        assert.deepEqual(getMissingOptions(options), ['from', 'to', 'subject', 'host', 'user', 'pass']);
+        assert.deepEqual(getMissingOptions(options), ['from', 'to', 'host', 'user', 'pass']);
     });
 
     it('Should not consider undefined values', () => {

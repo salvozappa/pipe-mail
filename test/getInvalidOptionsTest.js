@@ -10,7 +10,6 @@ describe('getInvalidOptions', () => {
         options = {
             from: 'foo@bar.com',
             to: 'bar@foo.com',
-            subject: 'Subject',
             host: 'smtp.foo.com',
             user: 'user',
             pass: 'password'
@@ -22,7 +21,6 @@ describe('getInvalidOptions', () => {
         options = {
             from: 'invalidemail',
             to: 'bar@foo.com',
-            subject: 'Subject',
             host: 'smtp.foo.com',
             user: 'user',
             pass: 'password'
@@ -34,11 +32,10 @@ describe('getInvalidOptions', () => {
         options = {
             from: 'invalidemail',
             to: 'invalidemail',
-            subject: '',
             host: 'invalidhost',
             user: '',
             pass: ''
         };
-        assert.deepEqual(getInvalidOptions(options), ['from', 'to', 'subject', 'host', 'user', 'pass']);
+        assert.deepEqual(getInvalidOptions(options), ['from', 'to', 'host', 'user', 'pass']);
     });
 });
