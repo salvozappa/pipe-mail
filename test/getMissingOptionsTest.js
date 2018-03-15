@@ -33,6 +33,12 @@ describe('getMissingOptions', () => {
         assert(!missingOptions.has('host'));
     });
 
+    it('Should not consider "port" mandatory', () => {
+        const options = {};
+        const missingOptions = new Set(getMissingOptions(options));
+        assert(!missingOptions.has('port'));
+    });
+
     it('Should consider undefined values as missing', () => {
         const options = {
             to: undefined
