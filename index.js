@@ -13,17 +13,17 @@ const getInvalidOptions = require('./lib/getInvalidOptions');
 
 commander
     .version('0.1.0')
-    .option('-f, --from <from>', 'Sender address')
-    .option('-t, --to <to>', 'Recipient address')
-    .option('-s, --subject <subject>', 'E-mail subject')
+    .arguments('<from-email-address>')
+    .arguments('<recipient-email-address>')
+    .option('-s, --subject <subject>', 'e-mail subject')
     .option('-h, --host <host>', 'SMTP server host')
     .option('-u, --user <user>', 'SMTP login username')
     .option('-p, --password <password>', 'SMTP login password')
     .parse(process.argv);
 
 const options = {
-    from: commander.from,
-    to: commander.to,
+    from: commander.args[0],
+    to: commander.args[1],
     subject: commander.subject,
     host: commander.host        || process.env.SMTP_HOST, // smtp.fastmail.com
     user: commander.user        || process.env.SMTP_USER,  //'salvatorezappala@fastmail.com',
