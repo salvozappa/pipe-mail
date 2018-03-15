@@ -16,7 +16,7 @@ commander
     .arguments('<from-email-address>')
     .arguments('<recipient-email-address>')
     .option('-s, --subject <subject>', 'e-mail subject')
-    .option('-h, --host <host>', 'SMTP server host')
+    .option('-o, --host <host>', 'SMTP server host')
     .option('-u, --user <user>', 'SMTP login username')
     .option('-p, --password <password>', 'SMTP login password')
     .parse(process.argv);
