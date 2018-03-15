@@ -4,38 +4,40 @@ const getMissingOptions = require('../lib/getMissingOptions');
 
 describe('getMissingOptions', () => {
 
-    let options;
+    it('Should return "from" and "to" if they are missing', () => {
+        const options = {};
+        const missingOptions = new Set(getMissingOptions(options));
+        assert(missingOptions.has('from') && missingOptions.has('to'));
+    });
 
-    it('Should return an empty array if all required options are present', () => {
-        options = {
+    it('Should not return "from" and "to" if they are present', () => {
+        const options = {
             from: 'foo@bar.com',
-            to: 'bar@foo.com',
-            host: 'smtp.foo.com',
-            user: 'user',
-            pass: 'password'
+            to: 'bar@foo.com'
         };
-        assert.deepEqual(getMissingOptions(options), [])
+        const missingOptions = new Set(getMissingOptions(options));
+        assert(!missingOptions.has('from') && !missingOptions.has('to'));
     });
 
-    it('Should return a single mising required options', () => {
-        options = {
-            to: 'bar@foo.com',
-            host: 'smtp.foo.com',
-            user: 'user',
-            pass: 'password'
+    it('Should return "host" if it\'s missing', () => {
+        const options = {};
+        const missingOptions = new Set(getMissingOptions(options));
+        assert(missingOptions.has('host'));
+    });
+
+    it('Should not return "host" if it\'s present', () => {
+        const options = {
+            host: 'smtp.foo.com'
         };
-        assert.deepEqual(getMissingOptions(options), ['from']);
+        const missingOptions = new Set(getMissingOptions(options));
+        assert(!missingOptions.has('host'));
     });
 
-    it('Should return all mising required options', () => {
-        options = {};
-        assert.deepEqual(getMissingOptions(options), ['from', 'to', 'host', 'user', 'pass']);
-    });
-
-    it('Should not consider undefined values', () => {
-        options = {
+    it('Should consider undefined values as missing', () => {
+        const options = {
             to: undefined
         };
-        assert(getMissingOptions(options).indexOf('to') > -1);
+        const missingOptions = new Set(getMissingOptions(options));
+        assert(missingOptions.has('to'));
     });
 });
