@@ -7,36 +7,34 @@ describe('createTransporter', () => {
         createTransport: td.function()
     }
 
-    it('Should properly set the options', () => {
+    it('Should pass the host to the transporter', () => {
+        createTransporter({host: 'host'}, nodeMailerMock);
+        td.verify(nodeMailerMock.createTransport(
+            td.matchers.contains({host: 'host'}
+        )));
+    });
+
+    it('Should properly format the authentication options', () => {
         createTransporter({
-            host: 'host',
             user: 'user',
             password: 'password',
         }, nodeMailerMock);
-        td.verify(nodeMailerMock.createTransport({
-            host: 'host',
-            secure: true,
-            auth: {
-                user: 'user',
-                pass: 'password'
-            }
-        }))
+        td.verify(nodeMailerMock.createTransport(
+            td.matchers.contains({
+                auth: {
+                    user: 'user',
+                    pass: 'password'
+                }
+            })
+        ));
     });
 
     it('Should not pass an invalid option to nodemailer', () => {
         createTransporter({
-            host: 'host',
-            user: 'user',
-            password: 'password',
-            foo: 'bar' // this invalid option should be scrapped
+            foo: 'bar'
         }, nodeMailerMock);
-        td.verify(nodeMailerMock.createTransport({
-            host: 'host',
-            secure: true,
-            auth: {
-                user: 'user',
-                pass: 'password'
-            }
-        }))
+        td.verify(nodeMailerMock.createTransport(
+            td.matchers.argThat((options) => { return typeof options.foo === 'undefined' }),
+        ));
     });
 });
