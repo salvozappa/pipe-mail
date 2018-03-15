@@ -8,7 +8,7 @@ const commander = require('commander');
 const readStandardInput = require('./lib/readStandardInput');
 const sendMessage = require('./lib/sendMessage');
 const createTransporter = require('./lib/createTransporter');
-const requireOptions = require('./lib/requireOptions');
+const getMissingOptions = require('./lib/getMissingOptions');
 
 commander
     .version('0.1.0')
@@ -29,8 +29,7 @@ const options = {
     pass: commander.pass        || process.env.SMTP_PASSWORD //'umwbtgv5qjrzlhqn'
 };
 
-const missingOptions = requireOptions(options);
-if (missingOptions.length > 0) {
+if (getMissingOptions(options) > 0) {
     commander.outputHelp();
     process.exit();
 }

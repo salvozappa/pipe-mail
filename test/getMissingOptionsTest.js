@@ -1,8 +1,8 @@
 const assert = require('assert');
 const td = require('testdouble');
-const requireOptions = require('../lib/requireOptions');
+const getMissingOptions = require('../lib/getMissingOptions');
 
-describe('requireOptions', () => {
+describe('getMissingOptions', () => {
 
     let options;
 
@@ -15,7 +15,7 @@ describe('requireOptions', () => {
             user: 'user',
             pass: 'password'
         };
-        assert.deepEqual(requireOptions(options), [])
+        assert.deepEqual(getMissingOptions(options), [])
     });
 
     it('Should return a single mising required options', () => {
@@ -26,18 +26,18 @@ describe('requireOptions', () => {
             user: 'user',
             pass: 'password'
         };
-        assert.deepEqual(requireOptions(options), ['from']);
+        assert.deepEqual(getMissingOptions(options), ['from']);
     });
 
     it('Should return all mising required options', () => {
         options = {};
-        assert.deepEqual(requireOptions(options), ['from', 'to', 'subject', 'host', 'user', 'pass']);
+        assert.deepEqual(getMissingOptions(options), ['from', 'to', 'subject', 'host', 'user', 'pass']);
     });
 
     it('Should not consider undefined values', () => {
         options = {
             to: undefined
         };
-        assert(requireOptions(options).indexOf('to') > -1);
+        assert(getMissingOptions(options).indexOf('to') > -1);
     });
 });
