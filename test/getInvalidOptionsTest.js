@@ -82,6 +82,14 @@ describe('getInvalidOptions', () => {
         assert(!invalidOptions.has('port'));
     });
 
+    it('Should not consider subject if undefined', () => {
+        options = {
+            subject: undefined
+        };
+        const invalidOptions = new Set(getInvalidOptions(options));
+        assert(!invalidOptions.has('subject'));
+    });
+
     it('Should accept "ssl" option if boolean', () => {
         options = {
             ssl: true
