@@ -19,7 +19,7 @@ const printHelpAndExit = () => {
 };
 
 const handleError = (error) => {
-    console.log(`\n  The server returned an error: "${error.response}"\n`);
+    console.error(`\n  The server returned an error: "${error.response}"\n`);
     process.exit(1);
 }
 
