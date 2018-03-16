@@ -2,6 +2,8 @@
 
 'use strict';
 
+const VERSION = require('./package.json').version;
+
 const nodemailer = require('nodemailer');
 const commander = require('commander');
 
@@ -22,7 +24,7 @@ const handleError = (error) => {
 }
 
 commander
-    .version('0.1.0')
+    .version(VERSION)
     .arguments('<from-email-address>')
     .arguments('<recipient-email-address>')
     .option('-s, --subject <subject>', 'e-mail subject')
