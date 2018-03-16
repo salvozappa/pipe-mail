@@ -33,6 +33,20 @@ describe('getMissingOptions', () => {
         assert(!missingOptions.has('host'));
     });
 
+    it('Should return "pass" if it\'s missing', () => {
+        const options = {};
+        const missingOptions = new Set(getMissingOptions(options));
+        assert(missingOptions.has('pass'));
+    });
+
+    it('Should not return "pass" if it\'s present', () => {
+        const options = {
+            pass: 'smtp.foo.com'
+        };
+        const missingOptions = new Set(getMissingOptions(options));
+        assert(!missingOptions.has('pass'));
+    });
+
     it('Should not consider "port" mandatory', () => {
         const options = {};
         const missingOptions = new Set(getMissingOptions(options));

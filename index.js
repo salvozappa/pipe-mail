@@ -25,7 +25,7 @@ commander
     .option('-r, --port <port>', 'SMTP server port. Defaults to 485 if SSL is in use, 587 if not')
     .option('-n, --no-ssl', 'Don\'t use SSL when connecting to the SMTP server')
     .option('-u, --user <user>', 'SMTP login username')
-    .option('-p, --password <password>', 'SMTP login password')
+    .option('-p, --pass <password>', 'SMTP login password')
     .parse(process.argv);
 
 const options = {
