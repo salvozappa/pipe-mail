@@ -11,6 +11,11 @@ const createTransporter = require('./lib/createTransporter');
 const getMissingOptions = require('./lib/getMissingOptions');
 const getInvalidOptions = require('./lib/getInvalidOptions');
 
+const printHelpAndExit = () => {
+    commander.outputHelp();
+    process.exit();
+};
+
 commander
     .version('0.1.0')
     .arguments('<from-email-address>')
@@ -34,9 +39,14 @@ const options = {
     ssl: commander.ssl
 };
 
-if (getMissingOptions(options).length > 0 || getInvalidOptions(options).length > 0) {
-    commander.outputHelp();
-    process.exit();
+if (getMissingOptions(options).length > 0) {
+    console.log('The following mandatory options are missing: ' + getMissingOptions(options).join(', '));
+    printHelpAndExit();
+}
+
+if (getInvalidOptions(options).length > 0) {
+    console.log('The following options are invalid: ' + getInvalidOptions(options).join(', '));
+    printHelpAndExit();
 }
 
 const transporter = createTransporter(options, nodemailer);
