@@ -20,7 +20,7 @@ describe('sendMessage', () => {
         sendMessage('This is the message', options, transporterMock);
         td.verify(
             transporterMock.sendMail(
-                td.matchers.contains({text: 'This is the message'}),
+                td.matchers.contains({ text: 'This is the message' }),
                 td.matchers.anything()
             )
         );
