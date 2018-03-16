@@ -68,7 +68,7 @@ Feel free to report any issues or submit PRs via github
 
 ## Authors
 
-* **Salvatore Zappalà** - *Initial work* - [salvozappa](https://github.com/salvozappa)
+* **Salvatore Zappalà** - *Initial work* - [@salvozappa](https://github.com/salvozappa)
 
 ## License
 
