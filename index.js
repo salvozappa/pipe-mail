@@ -16,6 +16,11 @@ const printHelpAndExit = () => {
     process.exit();
 };
 
+const handleError = (error) => {
+    console.log(`\n  The server returned an error: "${error.response}"\n`);
+    process.exit(1);
+}
+
 commander
     .version('0.1.0')
     .arguments('<from-email-address>')
@@ -53,5 +58,5 @@ const transporter = createTransporter(options, nodemailer);
 
 (async () => {
     const input = await readStandardInput(process.stdin);
-    sendMessage(input, options, transporter);
+    sendMessage(input, options, transporter).catch(handleError);
 })();
