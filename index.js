@@ -40,12 +40,12 @@ const options = {
 };
 
 if (getMissingOptions(options).length > 0) {
-    console.log('The following mandatory options are missing: ' + getMissingOptions(options).join(', '));
+    console.log('\n  The following mandatory options are missing: ' + getMissingOptions(options).join(', ') + '\n');
     printHelpAndExit();
 }
 
 if (getInvalidOptions(options).length > 0) {
-    console.log('The following options are invalid: ' + getInvalidOptions(options).join(', '));
+    console.log('\n  The following options are invalid: ' + getInvalidOptions(options).join(', '));
     printHelpAndExit();
 }
 
