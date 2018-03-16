@@ -3,7 +3,6 @@ const td = require('testdouble');
 const getInvalidOptions = require('../lib/getInvalidOptions');
 
 describe('getInvalidOptions', () => {
-
     let options;
 
     it('Should accept valid e-mails', () => {

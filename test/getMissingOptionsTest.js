@@ -3,7 +3,6 @@ const td = require('testdouble');
 const getMissingOptions = require('../lib/getMissingOptions');
 
 describe('getMissingOptions', () => {
-
     it('Should return "from" and "to" if they are missing', () => {
         const options = {};
         const missingOptions = new Set(getMissingOptions(options));
