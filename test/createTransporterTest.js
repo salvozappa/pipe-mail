@@ -54,7 +54,7 @@ describe('createTransporter', () => {
     it('Should properly format the authentication options', () => {
         createTransporter({
             user: 'user',
-            pass: 'password',
+            password: 'password',
         }, nodeMailerMock);
         td.verify(nodeMailerMock.createTransport(
             td.matchers.contains({

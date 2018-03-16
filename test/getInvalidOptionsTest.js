@@ -43,19 +43,19 @@ describe('getInvalidOptions', () => {
     it('Should accept non-empty credentials', () => {
         options = {
             user: 'user',
-            pass: 'pass'
+            password: 'password'
         };
         const invalidOptions = new Set(getInvalidOptions(options));
-        assert(!invalidOptions.has('user') && !invalidOptions.has('pass'));
+        assert(!invalidOptions.has('user') && !invalidOptions.has('password'));
     });
 
     it('Should not accept empty credentials', () => {
         options = {
             user: '',
-            pass: ''
+            password: ''
         };
         const invalidOptions = new Set(getInvalidOptions(options));
-        assert(invalidOptions.has('user') && invalidOptions.has('pass'));
+        assert(invalidOptions.has('user') && invalidOptions.has('password'));
     });
 
     it('Should accept a valid port number', () => {

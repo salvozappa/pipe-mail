@@ -25,17 +25,17 @@ commander
     .option('-r, --port <port>', 'SMTP server port. Defaults to 485 if SSL is in use, 587 if not')
     .option('-n, --no-ssl', 'Don\'t use SSL when connecting to the SMTP server')
     .option('-u, --user <user>', 'SMTP login username')
-    .option('-p, --pass <password>', 'SMTP login password')
+    .option('-p, --password <password>', 'SMTP login password')
     .parse(process.argv);
 
 const options = {
     from: commander.args[0],
     to: commander.args[1],
     subject: commander.subject,
-    host: commander.host        || process.env.SMTP_HOST, // smtp.fastmail.com
-    user: commander.user        || process.env.SMTP_USER,  //'salvatorezappala@fastmail.com',
-    pass: commander.pass        || process.env.SMTP_PASSWORD, //'umwbtgv5qjrzlhqn'
-    port: commander.port        || process.env.SMTP_PORT,
+    host: commander.host            || process.env.SMTP_HOST,
+    user: commander.user            || process.env.SMTP_USER,
+    password: commander.password    || process.env.SMTP_PASSWORD,
+    port: commander.port            || process.env.SMTP_PORT,
     ssl: commander.ssl
 };
 
