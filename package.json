@@ -1,7 +1,7 @@
 {
-  "name": "mailer-cli",
+  "name": "pipe-mail",
   "version": "0.1.0",
-  "description": "A command-line tool to send e-mails via SMTP",
+  "description": "A command-line tool to send e-mails via SMTP from the standard input",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -9,7 +9,7 @@
   "author": "Salvatore Zappalà (https://salvatorezappala.info)",
   "license": "MIT",
   "bin": {
-    "mailer-cli": "./index.js"
+    "pipe-mail": "./index.js"
   },
   "dependencies": {
     "nodemailer": "^4.4.1",
