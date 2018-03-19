@@ -112,4 +112,28 @@ describe('getInvalidOptions', () => {
         const invalidOptions = new Set(getInvalidOptions(options));
         assert(!invalidOptions.has('ssl'));
     });
+
+    it('Should accept "html" option if boolean', () => {
+        options = {
+            html: true
+        };
+        const invalidOptions = new Set(getInvalidOptions(options));
+        assert(!invalidOptions.has('html'));
+    });
+
+    it('Should not accept "html" option if non-boolean', () => {
+        options = {
+            html: 'abc'
+        };
+        const invalidOptions = new Set(getInvalidOptions(options));
+        assert(invalidOptions.has('html'));
+    });
+
+    it('Should not consider "html" option if undefined', () => {
+        options = {
+            html: undefined
+        };
+        const invalidOptions = new Set(getInvalidOptions(options));
+        assert(!invalidOptions.has('html'));
+    });
 });

@@ -58,6 +58,12 @@ describe('getMissingOptions', () => {
         assert(!missingOptions.has('ssl'));
     });
 
+    it('Should not consider "html" mandatory', () => {
+        const options = {};
+        const missingOptions = new Set(getMissingOptions(options));
+        assert(!missingOptions.has('html'));
+    });
+
     it('Should consider undefined values as missing', () => {
         const options = {
             to: undefined

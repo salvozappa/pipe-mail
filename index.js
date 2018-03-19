@@ -31,6 +31,7 @@ commander
     .option('-o, --host <host>', 'SMTP server host')
     .option('-r, --port <port>', 'SMTP server port. Defaults to 485 if SSL is in use, 587 if not')
     .option('-n, --no-ssl', 'Don\'t use SSL when connecting to the SMTP server')
+    .option('-t, --html', 'Send message as HTML')
     .option('-u, --user <user>', 'SMTP login username')
     .option('-p, --password <password>', 'SMTP login password')
     .parse(process.argv);
@@ -43,7 +44,8 @@ const options = {
     user: commander.user            || process.env.SMTP_USER,
     password: commander.password    || process.env.SMTP_PASSWORD,
     port: commander.port            || process.env.SMTP_PORT,
-    ssl: commander.ssl
+    ssl: commander.ssl,
+    html: commander.html
 };
 
 const missingOptions = getMissingOptions(options);
