@@ -46,13 +46,15 @@ const options = {
     ssl: commander.ssl
 };
 
-if (getMissingOptions(options).length > 0) {
-    console.log('\n  The following mandatory options are missing: ' + getMissingOptions(options).join(', ') + '\n');
+const missingOptions = getMissingOptions(options);
+if (missingOptions.length > 0) {
+    console.log('\n  The following mandatory options are missing: ' + missingOptions.join(', ') + '\n');
     printHelpAndExit();
 }
 
-if (getInvalidOptions(options).length > 0) {
-    console.log('\n  The following options are invalid: ' + getInvalidOptions(options).join(', '));
+const invalidOptions = getInvalidOptions(options);
+if (invalidOptions.length > 0) {
+    console.log('\n  The following options are invalid: ' + invalidOptions.join(', '));
     printHelpAndExit();
 }
 
