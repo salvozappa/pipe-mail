@@ -26,7 +26,7 @@ describe('createTransporter', () => {
             port: undefined
         }, nodeMailerMock);
         td.verify(nodeMailerMock.createTransport(
-            td.matchers.argThat((options) => { return Object.keys(options).indexOf('port') === -1 }),
+            td.matchers.argThat((options) => { return !Object.keys(options).includes('port')}),
         ));
     })
 
@@ -47,7 +47,7 @@ describe('createTransporter', () => {
     it('Should not pass "secure" to the transporter if "ssl" option is not set', () => {
         createTransporter({}, nodeMailerMock);
         td.verify(nodeMailerMock.createTransport(
-            td.matchers.argThat((options) => { return Object.keys(options).indexOf('secure') === -1 }),
+            td.matchers.argThat((options) => { return !Object.keys(options).includes('secure')}),
         ));
     });
 
