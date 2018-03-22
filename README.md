@@ -41,19 +41,20 @@ pipe-mail fromaddress@fastmail.com toaddress@fastmail.com < email.txt
 ```
 $ pipe-mail --help
 
-  Usage: index [options] <from-email-address> <recipient-email-address>
-
+  Usage: pipe-mail [options] [from-email-address] <recipient-email-address>
 
   Options:
 
-  -V, --version              output the version number
-  -s, --subject <subject>    e-mail subject
-  -o, --host <host>          SMTP server host
-  -r, --port <port>          SMTP server port. Defaults to 485 if SSL is in use, 587 if not
-  -n, --no-ssl               Don't use SSL when connecting to the SMTP server
-  -u, --user <user>          SMTP login username
-  -p, --password <password>  SMTP login password
-  -h, --help                 output usage information
+    -V, --version              output the version number
+    -s, --subject <subject>    e-mail subject
+    -o, --host <host>          SMTP server host
+    -r, --port <port>          SMTP server port. Defaults to 485 if SSL is in use, 587 if not
+    -n, --no-ssl               Don't use SSL when connecting to the SMTP server
+    -t, --html                 Send message as HTML
+    -u, --user <user>          SMTP login username
+    -p, --password <password>  SMTP login password
+    -h, --help                 output usage information
+
 ```
 
 ## Environment Variables
