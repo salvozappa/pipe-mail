@@ -64,6 +64,7 @@ Some options can be specified via environment variables:
 - **SMTP_PORT**
 - **SMTP_USER**
 - **SMTP_PASSWORD**
+- **PIPEMAIL_FROM** : From e-mail address. If this is set, the "from-email-address" argument can be omitted
 
 ## Contributing
 

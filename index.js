@@ -12,6 +12,7 @@ const sendMessage = require('./lib/sendMessage');
 const createTransporter = require('./lib/createTransporter');
 const getMissingOptions = require('./lib/getMissingOptions');
 const getInvalidOptions = require('./lib/getInvalidOptions');
+const getOptionsFromArguments = require('./lib/getOptionsFromArguments');
 
 const printHelpAndExit = () => {
     commander.outputHelp();
@@ -25,7 +26,7 @@ const handleError = (error) => {
 
 commander
     .version(VERSION)
-    .arguments('<from-email-address>')
+    .arguments('[from-email-address]')
     .arguments('<recipient-email-address>')
     .option('-s, --subject <subject>', 'e-mail subject')
     .option('-o, --host <host>', 'SMTP server host')
@@ -36,9 +37,11 @@ commander
     .option('-p, --password <password>', 'SMTP login password')
     .parse(process.argv);
 
+const optionsFromArguments = getOptionsFromArguments(commander.args);
+
 const options = {
-    from: commander.args[0],
-    to: commander.args[1],
+    from: optionsFromArguments.from || process.env.PIPEMAIL_FROM,
+    to: optionsFromArguments.to,
     subject: commander.subject,
     host: commander.host            || process.env.SMTP_HOST,
     user: commander.user            || process.env.SMTP_USER,
