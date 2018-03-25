@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+* Rename environment variables to avoid collisions with other softwares
+
 ## 0.3.0
 
 * Add possibility to specify the "from" e-mail address through the `PIPEMAIL_FROM` environment variable
