@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/salvozappa/pipe-mail.svg?branch=master)](https://travis-ci.org/salvozappa/pipe-mail)
+
 # pipe-mail
 
 A command-line tool to send e-mails via SMTP from the standard input.
