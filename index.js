@@ -43,10 +43,10 @@ const options = {
     from: optionsFromArguments.from || process.env.PIPEMAIL_FROM,
     to: optionsFromArguments.to,
     subject: commander.subject,
-    host: commander.host            || process.env.SMTP_HOST,
-    user: commander.user            || process.env.SMTP_USER,
-    password: commander.password    || process.env.SMTP_PASSWORD,
-    port: commander.port            || process.env.SMTP_PORT,
+    host: commander.host            || process.env.PIPEMAIL_SMTP_HOST,
+    user: commander.user            || process.env.PIPEMAIL_SMTP_USER,
+    password: commander.password    || process.env.PIPEMAIL_SMTP_PASSWORD,
+    port: commander.port            || process.env.PIPEMAIL_SMTP_PORT,
     ssl: commander.ssl,
     html: commander.html
 };
