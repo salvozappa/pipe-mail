@@ -1,11 +1,10 @@
-const assert = require('assert');
 const td = require('testdouble');
 const sendMessage = require('../lib/sendMessage');
 
 describe('sendMessage', () => {
     const transporterMock = {
         sendMail: td.function()
-    }
+    };
     let options;
 
     beforeEach(() => {
@@ -42,7 +41,7 @@ describe('sendMessage', () => {
         sendMessage('This is the message', options, transporterMock);
         td.verify(
             transporterMock.sendMail(
-                td.matchers.argThat((options) => { return typeof options.text === 'undefined' }),
+                td.matchers.argThat((options) => typeof options.text === 'undefined'),
                 td.matchers.anything()
             )
         );
@@ -52,7 +51,7 @@ describe('sendMessage', () => {
         sendMessage('This is the message', options, transporterMock);
         td.verify(
             transporterMock.sendMail(
-                td.matchers.argThat((options) => { return typeof options.html === 'undefined' }),
+                td.matchers.argThat((options) => typeof options.html === 'undefined'),
                 td.matchers.anything()
             )
         );
@@ -73,7 +72,7 @@ describe('sendMessage', () => {
         sendMessage('This is the message', options, transporterMock);
         td.verify(
             transporterMock.sendMail(
-                td.matchers.argThat((options) => { return typeof options.foo === 'undefined' }),
+                td.matchers.argThat((options) => typeof options.foo === 'undefined'),
                 td.matchers.anything()
             )
         );

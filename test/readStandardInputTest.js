@@ -7,7 +7,7 @@ class StandardInputMock extends EventEmitter {
     constructor() {
         super();
         this.setEncoding = td.function('fake set encoding function');
-        this.read = () => { return 'foo' };
+        this.read = () => 'foo';
     }
 }
 
