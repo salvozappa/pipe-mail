@@ -1,5 +1,4 @@
 const assert = require('assert');
-const td = require('testdouble');
 const getInvalidOptions = require('../lib/getInvalidOptions');
 
 describe('getInvalidOptions', () => {

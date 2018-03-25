@@ -1,5 +1,4 @@
 const assert = require('assert');
-const td = require('testdouble');
 const getOptionsFromArguments = require('../lib/getOptionsFromArguments');
 
 describe('readOptionsFromArguments', () => {

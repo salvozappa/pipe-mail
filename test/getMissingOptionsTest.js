@@ -1,5 +1,4 @@
 const assert = require('assert');
-const td = require('testdouble');
 const getMissingOptions = require('../lib/getMissingOptions');
 
 describe('getMissingOptions', () => {
