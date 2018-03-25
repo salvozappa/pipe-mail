@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0 🚀
+
+* Stable release: setup build system and code linting
+
 ## 0.4.0
 
 * Rename environment variables to avoid collisions with other softwares
