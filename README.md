@@ -25,9 +25,9 @@ echo "Hello world!" | pipe-mail -s Subject -o smtp.fastmail.com -u myusername -p
 If you don't want to specify the server options every time, you can set them as environment variables:
 
 ```bash
-export SMTP_HOST=smtp.fastmail.com
-export SMTP_USER=myusername
-export SMTP_PASSWORD=mypassword
+export PIPEMAIL_SMTP_HOST=smtp.fastmail.com
+export PIPEMAIL_SMTP_USER=myusername
+export PIPEMAIL_SMTP_PASSWORD=mypassword
 echo "Hello world!" | pipe-mail fromaddress@fastmail.com toaddress@fastmail.com
 ```
 
