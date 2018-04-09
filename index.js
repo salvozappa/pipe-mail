@@ -22,7 +22,7 @@ const printHelpAndExit = () => {
 const handleError = (error) => {
     console.error(`\n  The server returned an error: "${error.response}"\n`);
     process.exit(1);
-}
+};
 
 commander
     .version(VERSION)
