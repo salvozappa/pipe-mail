@@ -1,14 +1,14 @@
 {
   "name": "pipe-mail",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A command-line tool to send e-mails via SMTP from the standard input",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
     "lint": "eslint ."
   },
-  "author": "Salvatore Zappalà (https://salvatorezappala.info)",
-  "repository": "github:salvozappa/pipe-mail",
+  "author": "originally Salvatore Zappalà (https://salvatorezappala.info)",
+  "repository": "github:TheWebMachine/pipe-mail",
   "license": "MIT",
   "bin": {
     "pipe-mail": "./index.js"
