@@ -7,8 +7,8 @@
     "test": "mocha",
     "lint": "eslint ."
   },
-  "author": "originally Salvatore Zappalà (https://salvatorezappala.info)",
-  "repository": "github:TheWebMachine/pipe-mail",
+  "author": "Salvatore Zappalà (https://salvatorezappala.info)",
+  "repository": "github:salvozappa/pipe-mail",
   "license": "MIT",
   "bin": {
     "pipe-mail": "./index.js"
