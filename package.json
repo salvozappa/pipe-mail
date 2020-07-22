@@ -1,6 +1,6 @@
 {
   "name": "pipe-mail",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A command-line tool to send e-mails via SMTP from the standard input",
   "main": "index.js",
   "scripts": {

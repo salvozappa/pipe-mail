@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1 🔐
+
+* Allow for undefined user/password for SMTP that use IP Authentication
+
 ## 1.0.0 🚀
 
 * Stable release: setup build system and code linting
