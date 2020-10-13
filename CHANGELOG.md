@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.1 🔐
+## 1.0.2 🔐
 
 * Allow for undefined user/password for SMTP that use IP Authentication
 
