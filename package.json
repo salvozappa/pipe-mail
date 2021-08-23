@@ -16,8 +16,5 @@
     "commander": "8.1.0",
     "nodemailer": "6.6.3",
     "validator": "13.6.0"
-  },
-  "devDependencies": {
-    "eslint": "7.32.0"
   }
 }
