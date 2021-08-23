@@ -6,6 +6,7 @@ A command-line tool to send e-mails via SMTP from the standard input.
 
 ## Prerequisites
 
+<!-- TODO test Node.js versions -->
 Node.js 7 or above.
 
 ## Installation
