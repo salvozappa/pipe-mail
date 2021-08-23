@@ -4,15 +4,14 @@
 
 const VERSION = require('./package.json').version;
 
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
 const commander = require('commander');
 
-const readStandardInput = require('./lib/readStandardInput');
-const sendMessage = require('./lib/sendMessage');
-const createTransporter = require('./lib/createTransporter');
-const getMissingOptions = require('./lib/getMissingOptions');
-const getInvalidOptions = require('./lib/getInvalidOptions');
-const getOptionsFromArguments = require('./lib/getOptionsFromArguments');
+// const readStandardInput = require('./lib/readStandardInput');
+// const sendMessage = require('./lib/sendMessage');
+// const createTransporter = require('./lib/createTransporter');
+// const getMissingOptions = require('./lib/getMissingOptions');
+// const getInvalidOptions = require('./lib/getInvalidOptions');
 
 const printHelpAndExit = () => {
     commander.outputHelp();
@@ -26,46 +25,50 @@ const handleError = (error) => {
 
 commander
     .version(VERSION)
-    .arguments('[from-email-address]')
-    .arguments('<recipient-email-address>')
-    .option('-s, --subject <subject>', 'e-mail subject')
-    .option('-o, --host <host>', 'SMTP server host')
-    .option('-r, --port <port>', 'SMTP server port. Defaults to 485 if SSL is in use, 587 if not')
-    .option('-n, --no-ssl', 'Don\'t use SSL when connecting to the SMTP server')
-    .option('-t, --html', 'Send message as HTML')
-    .option('-u, --user <user>', 'SMTP login username')
-    .option('-p, --password <password>', 'SMTP login password')
+    .argument("<to-email-address>", "Recipient email address")
+    .argument("[from-email-address]",
+        "Sender email address. Defaults to PIPEMAIL_FROM environment variable")
+    .option("-s, --subject <subject>", "Email subject")
+    .option("-o, --host <host>", "SMTP server host")
+    .option("-r, --port <port>", "SMTP server port. Defaults to 485 if SSL is in use, 587 if not")
+    .option("-n, --no-ssl", "Don't use SSL when connecting to the SMTP server")
+    .option("-t, --html", "Send message as HTML")
+    .option("-u, --user <user>", "SMTP login username")
+    .option("-p, --password <password>", "SMTP login password")
     .parse(process.argv);
 
-const optionsFromArguments = getOptionsFromArguments(commander.args);
+const args = commander.args;
+const options = commander.opts();
 
-const options = {
-    from: optionsFromArguments.from || process.env.PIPEMAIL_FROM,
-    to: optionsFromArguments.to,
-    subject: commander.subject,
-    host: commander.host            || process.env.PIPEMAIL_SMTP_HOST,
-    user: commander.user            || process.env.PIPEMAIL_SMTP_USER,
-    password: commander.password    || process.env.PIPEMAIL_SMTP_PASSWORD,
-    port: commander.port            || process.env.PIPEMAIL_SMTP_PORT,
-    ssl: commander.ssl,
-    html: commander.html
+const parameters = {
+    to: args[0],
+    from: (args.length > 1) ? args[1] : process.env.PIPEMAIL_FROM,
+    subject: options.subject,
+    host: options.host            || process.env.PIPEMAIL_SMTP_HOST,
+    user: options.user            || process.env.PIPEMAIL_SMTP_USER,
+    password: options.password    || process.env.PIPEMAIL_SMTP_PASSWORD,
+    port: options.port            || process.env.PIPEMAIL_SMTP_PORT,
+    ssl: options.ssl,
+    html: options.html
 };
 
-const missingOptions = getMissingOptions(options);
-if (missingOptions.length > 0) {
-    console.log('\n  The following mandatory options are missing: ' + missingOptions.join(', ') + '\n');
-    printHelpAndExit();
-}
+console.log(parameters);
 
-const invalidOptions = getInvalidOptions(options);
-if (invalidOptions.length > 0) {
-    console.log('\n  The following options are invalid: ' + invalidOptions.join(', '));
-    printHelpAndExit();
-}
+// const missingOptions = getMissingOptions(options);
+// if (missingOptions.length > 0) {
+//     console.log('\n  The following mandatory options are missing: ' + missingOptions.join(', ') + '\n');
+//     printHelpAndExit();
+// }
 
-const transporter = createTransporter(options, nodemailer);
+// const invalidOptions = getInvalidOptions(options);
+// if (invalidOptions.length > 0) {
+//     console.log('\n  The following options are invalid: ' + invalidOptions.join(', '));
+//     printHelpAndExit();
+// }
 
-(async () => {
-    const input = await readStandardInput(process.stdin);
-    sendMessage(input, options, transporter).catch(handleError);
-})();
+// const transporter = createTransporter(options, nodemailer);
+
+// (async () => {
+//     const input = await readStandardInput(process.stdin);
+//     sendMessage(input, options, transporter).catch(handleError);
+// })();
