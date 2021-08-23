@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "commander": "8.1.0",
-    "nodemailer": "^4.4.1",
+    "nodemailer": "6.6.3",
     "validator": "^9.4.1"
   },
   "devDependencies": {
