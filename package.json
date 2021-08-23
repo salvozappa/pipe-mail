@@ -19,7 +19,7 @@
     "validator": "13.6.0"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
+    "eslint": "7.32.0",
     "mocha": "^5.0.4",
     "testdouble": "^3.5.2"
   }
