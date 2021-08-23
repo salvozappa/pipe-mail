@@ -14,7 +14,7 @@
     "pipe-mail": "./index.js"
   },
   "dependencies": {
-    "commander": "^2.15.0",
+    "commander": "8.1.0",
     "nodemailer": "^4.4.1",
     "validator": "^9.4.1"
   },
